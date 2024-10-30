@@ -1,0 +1,33 @@
+@media (max-width: 600px) {
+    header {
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #a8febc;
+    }
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+    .logo-container h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+    }
+    .logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 5px;
+    
+    }
+    .menu {
+        background-color: transparent;
+        border: none;
+        margin: 0 20px;
+    }
+    .menu svg {
+        width: 40px;
+        height: 40px;
+    }
+}
