@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppHeaderComponent {
   openMenu:boolean = false;
-  mensaje() {
+  showMenu() {
     this.openMenu = !this.openMenu;
   }
 }
