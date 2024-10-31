@@ -66,4 +66,8 @@
         text-align: center;
         margin: 5px;
     }
+    .toggleMenu a {
+       text-decoration: none;
+       color: black;
+    }
 }
