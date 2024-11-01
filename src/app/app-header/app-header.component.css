@@ -41,6 +41,16 @@
         display: flex;
         padding: 10px;
         flex-direction: column;
+        animation-duration: 0.5s;
+        animation-name: sliderin;
+    }
+    @keyframes sliderin {
+        from {
+            width: 0px;
+        }
+        to {
+            width: 210px;
+        }
     }
     .closeMenu {
         background-color: transparent;
