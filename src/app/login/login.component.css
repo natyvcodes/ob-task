@@ -9,6 +9,10 @@
     justify-content: center;
     align-items: center;
 }
+form span a {
+    color: #5E73FF;
+    padding: 5px 2px;
+}
 .form-container {
     background-color: #ffffff;
     padding: 20px;
@@ -17,10 +21,16 @@
     box-shadow: 1px 1px 1px #d5d5d5;
     width: 70%;
 }
+.form-container  p {
+    text-align: center;
+}
 .form-container h1 {
     margin: 0;
     padding-bottom: 20px;
     text-align: center;
+}
+.form-container  p a {
+    color: #1E8F40;
 }
 .btn_close {
     width: 100%;
