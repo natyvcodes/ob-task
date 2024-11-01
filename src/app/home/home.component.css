@@ -41,4 +41,19 @@ body {
     padding: 5px 20px;
     border-radius: 5px;
 }
+.info-container {
+    margin: 30px;
+}
+video {
+    width: 80%;
+    margin: 10px 30px;
+    border: 1px solid;
+    border-radius: 12px;
+}
+.info-intro .step-two p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 }
