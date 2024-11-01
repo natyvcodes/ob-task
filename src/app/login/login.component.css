@@ -13,7 +13,7 @@
     background-color: #ffffff;
     padding: 20px;
     margin: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 1px 1px 1px #d5d5d5;
     width: 70%;
 }
@@ -21,6 +21,22 @@
     margin: 0;
     padding-bottom: 20px;
     text-align: center;
+}
+.btn_close {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.btn_close svg {
+    width: 30px;
+    height: 30px;
+
+}
+.btn_close svg path {
+    stroke: black;
 }
 form {
     display: flex;
@@ -36,9 +52,13 @@ input[type="text"],input[type="password"]  {
 }
 
 input[type="submit"] {
-    padding: 16px;
-    width: 90px;
+    padding: 12px 0;
+    width: 120px;
     border: none;
+    background-color: #a8febc;
     font-family: "Outfit", serif;
     border-radius: 10px;
+    font-size: 1em;
+    margin: 10px 0;
+    align-self: center;
 }
