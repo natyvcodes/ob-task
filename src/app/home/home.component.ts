@@ -1,15 +1,22 @@
-import { Component, Inject } from '@angular/core';
-import { AppHeaderComponent } from '../app-header/app-header.component';
-import { RouterOutlet } from '@angular/router';
-import { RouterLink } from '@angular/router';
-import { RouterLinkActive } from '@angular/router';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AppHeaderComponent,RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [ MatDialogModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
+  readonly dialog = inject(MatDialog);
+  showLogin(){
+    const dialogRef = this.dialog.open(LoginComponent);
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
