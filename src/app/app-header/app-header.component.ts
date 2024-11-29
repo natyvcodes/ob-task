@@ -1,16 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { RouterLink } from '@angular/router';
-import { RouterLinkActive } from '@angular/router';
+import { Component, ElementRef, afterRender } from '@angular/core';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, RouterOutlet],
+  imports: [],
   templateUrl: './app-header.component.html',
   styleUrl: './app-header.component.css'
 })
 export class AppHeaderComponent {
-  openMenu:boolean = false;
+  openMenu: boolean = true;
   showMenu() {
     this.openMenu = !this.openMenu;
   }
