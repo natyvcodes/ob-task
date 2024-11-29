@@ -13,7 +13,9 @@ import { LoginComponent } from '../login/login.component';
 export class HomeComponent {
   readonly dialog = inject(MatDialog);
   showLogin(){
-    const dialogRef = this.dialog.open(LoginComponent);
+    const dialogRef = this.dialog.open(LoginComponent,{
+      width: '320px'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
