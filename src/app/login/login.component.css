@@ -1,25 +1,17 @@
-.component-background {
-    position: absolute;
-    backdrop-filter: blur(10px);
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 form span a {
     color: #5E73FF;
     padding: 5px 2px;
 }
+h1 {
+    font-family: "Outfit", serif;
+}
 .form-container {
+    font-family: "Outfit", serif;
     background-color: #ffffff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
+    padding: 30px;
     box-shadow: 1px 1px 1px #d5d5d5;
-    width: 70%;
+    width: 280px;
 }
 .form-container  p {
     text-align: center;
