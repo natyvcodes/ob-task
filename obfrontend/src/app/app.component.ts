@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { ApiService } from './api.service';
-
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,17 +12,18 @@ import { ApiService } from './api.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  mensaje:string = '';
-  constructor (private apiService: ApiService){}
+  mensaje: Object = {};
+  constructor(private apiService: ApiService) { }
   ngOnInit(): void {
-    this.apiService.getMessage().subscribe(
-      (data: any) => {
+    this.apiService.getMessage().pipe(
+      map(data => {
         this.mensaje = data;
         console.log(data);
-      },
-      (error: any) => {
+      }),
+      catchError(error => {
         console.error('An error occurred:', error);
-      }
-    );
+        return of('Error occurred');
+      })
+    ).subscribe()
   }
 }
