@@ -10,5 +10,6 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './my-tasks.component.css'
 })
 export class MyTasksComponent {
-
+    existTasks: boolean = false;
+    
 }
