@@ -13,4 +13,10 @@ export class ApiService {
   getCategories(): Observable<String[]> {
     return this.http.get<String[]>(`${this.apiUrl}/categories`)
   }
+  getStates(): Observable<String[]> {
+    return this.http.get<String[]>(`${this.apiUrl}/states`)
+  }
+  createTask(taskData: string):Observable<Object[]> {
+    return this.http.post<Object[]>(`${this.apiUrl}/addTask`,taskData)
+  }
 } 

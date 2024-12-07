@@ -7,27 +7,30 @@
             </path>
         </svg>
     </button>
-    <form action="http://localhost:3000/addTask" method="post">
-        <label for="name">User</label>
-        <input type="text" name="user_id" id="user_id" placeholder="Finish math">
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+        <label for="user_id">User</label>
+        <input formControlName="user_id" type="text" name="user_id" id="user_id" placeholder="Finish math">
+
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" placeholder="Finish math">
-        <label for="descrip">Description</label>
-        <textarea name="description" id="description" placeholder="Describe your homework"></textarea>
-        <label for="rb-container">Category</label>
-        <select name="id_category" id="id_category">
-            @for (item of description; track $index) {
-            <option [value]="ids[$index]">{{description[$index]}}</option>
-            }
-        </select>
-        <label for="rbs-container">State</label>
-        <select name="id_state" id="id_state">
-            @for (item of description; track $index) {
-                <option [value]="ids[$index]">{{description[$index]}}</option>
+        <input formControlName="name" type="text" name="name" id="name" placeholder="Finish math" autocomplete="name">
+
+        <label for="description">Description</label>
+        <textarea formControlName="description" name="description" id="description" placeholder="Describe your homework"></textarea>
+
+        <label for="id_state">State</label>
+        <select formControlName="id_state" name="id_state" id="id_state">
+            <option value="default">Choose: </option>
+            @for (item of name_state; track $index) {
+                <option [value]="">{{name_state[$index]}}</option>
                 }
         </select>
+        <label for="id_category">Category</label>
+        <select formControlName="id_category" name="id_category" id="id_category">
+            <option value="default">Choose: </option>
+            @for (item of id_c; track $index) {
+            <option [value]="">{{name_category[$index]}}</option>
+            }
+        </select>
         <input type="submit" value="Add task">
-
-
     </form>
 </article>

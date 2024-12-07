@@ -107,3 +107,11 @@ input[type="radio"]:checked {
 input[type="radio"]:hover {
     background-color: #e6f0ff;
 }
+select {
+    height: 40px;
+    border: none;
+    padding: 0 10px;
+    border-radius: 10px;
+    background-color: #dadada;
+    font-family: "Outfit", serif;
+}
