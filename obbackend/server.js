@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 app.get('/users',db.getUser)
 app.post('/addTask', db.addTask)
 app.get('/categories', db.getCategories)
+app.get('/states', db.getStates)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
