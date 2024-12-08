@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -20,6 +21,7 @@ app.get('/users',db.getUser)
 app.post('/addTask', db.addTask)
 app.get('/categories', db.getCategories)
 app.get('/states', db.getStates)
+app.post('/login', db.authUser)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
