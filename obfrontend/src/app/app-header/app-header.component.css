@@ -11,6 +11,28 @@
      align-items: center;
  }
 
+ .nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+ }
+ .account {
+    display: flex;
+    position: relative;
+ }
+ .account .button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: hsl(133, 28%, 48%);
+    padding: 0 10px;
+    border-radius: 5px;
+    color: #d4ffde;
+ }
+ .button svg {
+    margin-left: 5px;
+ }
+
  .logo-container h1 {
      margin: 0;
      padding: 0;
@@ -46,11 +68,36 @@
      border-radius: 2px;
      margin: 2px;
  }
- .toggleMenu li:hover {
-    background-color: #589b67;
-    color: #d4ffde;
-}
 
+ .toggleMenu li:hover {
+     background-color: #589b67;
+     color: #d4ffde;
+ }
+ .accountMenu {
+    position: absolute;
+    display: flex;
+    top: 57px;
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    width: 90%;
+
+ }
+ .account a {
+    text-align: center;
+    padding: 10px;
+    background-color: #589b67;
+    width: 100%;
+ }
+ .accountMenu a  li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+ }
 
  .toggleMenu a {
      text-decoration: none;
@@ -62,10 +109,11 @@
     background-color: #57b56d;
  } */
  @media (min-width: 600px) {
-    header {
-       padding-right: 30px;
-    }
+     header {
+         padding-right: 30px;
+     }
  }
+
  @media (max-width: 600px) {
      .menu {
          background-color: transparent;
@@ -80,7 +128,7 @@
          height: 40px;
      }
 
-    .nav {
+     .nav {
          position: absolute;
          top: 0;
          bottom: 0;
@@ -140,7 +188,8 @@
          text-decoration: none;
          color: black;
      }
+
      .active-nav {
-        display: none;
+         display: none;
      }
  }
