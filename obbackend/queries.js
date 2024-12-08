@@ -1,11 +1,11 @@
 const { response } = require('express');
 const pgp = require('pg-promise')();
 const db = pgp('postgres://postgres:nataf2712@localhost:5433/obtasks')
-
+const bcryptjs = require('bcryptjs'); const jwt = require('jsonwebtoken');
 
 
 const getUser = (request, response) => {
-    db.any('SELECT * FROM task').then(results => {
+    db.any('SELECT name FROM usuario where email = $1').then(results => {
         response.status(200).json(results);
     }).catch(error => {
         console.error(error);
@@ -35,9 +35,35 @@ const getStates = (request, response) => {
         response.status(500).json({ error: 'Algo salió mal al obtener las categorias' });
     })
 }
+const authUser = async (request, response) => {
+    const { email, password } = request.body;
+  
+    if (!email || !password) {
+      return response.status(400).json({ message: 'Email and password are required' });
+    }
+    try {
+      const user = await db.oneOrNone('SELECT email, password, name FROM usuario WHERE email = $1', [email]);
+      if (!user) {
+        return response.status(401).json({ message: 'Invalid email or password' });
+      }
+      const passwordMatch = await bcryptjs.compare(password, user.password);
+      if (!passwordMatch) {
+        return response.status(401).json({ message: 'Invalid email or password' });
+      }
+  
+      const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      response.status(200).json({ message: 'User authenticated', token, name: user.name });
+  
+    } catch (error) {
+      console.error('Error during authentication:', error);
+     response.status(500).send(`Error during authentication: ${error.message}`);
+    }
+  };
+  
 module.exports = {
     getUser,
     addTask,
     getCategories,
-    getStates
+    getStates,
+    authUser
 }
