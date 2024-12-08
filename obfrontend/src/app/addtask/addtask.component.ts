@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { forkJoin, of } from 'rxjs';
 import { TaskAddedDialogComponent } from '../task-added-dialog/task-added-dialog.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-addtask',
@@ -27,7 +28,7 @@ export class AddtaskComponent implements OnInit {
   myForm: FormGroup;
   formSend: boolean = false;
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder) {
+  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private authService: AuthService) {
     this.myForm = this.formBuilder.group({
       user_id: ['', Validators.required],
       name: ['', Validators.required],
@@ -62,6 +63,8 @@ export class AddtaskComponent implements OnInit {
           })
         )
       }).subscribe()
+     
+    
   }
   submitForm() {
     for(let i = 0; i < this.name_state.length; i++){
