@@ -8,11 +8,11 @@
         </svg>
     </button>
     <h1>Log in</h1>
-        <form action="#" method="post">
+        <form [formGroup]="myLogin" (ngSubmit)="submitForm()">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="example@gmail.com">
+            <input formControlName="email" type="text" name="email" id="email" placeholder="example@gmail.com">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input formControlName="password" type="password" name="password" id="password" placeholder="Password">
             <span><a href="">Did you forget your password?</a></span>
             <input type="submit" value="Log in">
         </form>
