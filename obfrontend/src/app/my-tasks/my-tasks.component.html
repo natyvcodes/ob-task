@@ -1,40 +1,36 @@
 <article class="container">
-    <h2>Your tasks</h2>
-    @if (isLoggedIn) {
+    <div class="inicio">
+        <h2>Your tasks</h2>
+        <button (click)="showTaskRegister()" class="btn-add-t">
+            Add a new tasks
+        </button>
+    </div>
+
+    @if (taskData.length != 0) {
     <section class="tasks-states-container">
         <div class="task-state">
             <h3>Pendings</h3>
-            <ul class="task-container">
-                <li class="task">
-                    <p>Descripcion</p>
-                    <div class="btns_container">
-                        <button class="dlt" matTooltip="Delete this task"
-                            aria-label="Button that displays a delete tooltip when focused or hovered over">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                <path fill="#0284c7"
-                                    d="M3 6.524c0-.395.327-.714.73-.714h4.788c.006-.842.098-1.995.932-2.793A3.68 3.68 0 0 1 12 2a3.68 3.68 0 0 1 2.55 1.017c.834.798.926 1.951.932 2.793h4.788c.403 0 .73.32.73.714a.72.72 0 0 1-.73.714H3.73A.72.72 0 0 1 3 6.524" />
-                                <path fill="#0284c7" fill-rule="evenodd"
-                                    d="M11.596 22h.808c2.783 0 4.174 0 5.08-.886c.904-.886.996-2.34 1.181-5.246l.267-4.187c.1-1.577.15-2.366-.303-2.866c-.454-.5-1.22-.5-2.753-.5H8.124c-1.533 0-2.3 0-2.753.5s-.404 1.289-.303 2.866l.267 4.188c.185 2.906.277 4.36 1.182 5.245c.905.886 2.296.886 5.079.886m-1.35-9.811c-.04-.434-.408-.75-.82-.707c-.413.043-.713.43-.672.864l.5 5.263c.04.434.408.75.82.707c.413-.044.713-.43.672-.864zm4.329-.707c.412.043.713.43.671.864l-.5 5.263c-.04.434-.409.75-.82.707c-.413-.044-.713-.43-.672-.864l.5-5.264c.04-.433.409-.75.82-.707"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <button class="cgy" matTooltip="Category: Urgent"
-                            aria-label="Button that displays a delete tooltip when focused or hovered over">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                <path fill="#dc2626" fill-rule="evenodd"
-                                    d="M5.312 10.762C8.23 5.587 9.689 3 12 3s3.77 2.587 6.688 7.762l.364.644c2.425 4.3 3.638 6.45 2.542 8.022S17.786 21 12.364 21h-.728c-5.422 0-8.134 0-9.23-1.572s.117-3.722 2.542-8.022zM12 7.25a.75.75 0 0 1 .75.75v5a.75.75 0 0 1-1.5 0V8a.75.75 0 0 1 .75-.75M12 17a1 1 0 1 0 0-2a1 1 0 0 0 0 2"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </div>
-                </li>
-            </ul>
+            @for (task of taskData; track task.id) {
+            @if (task.id_state == '1') {
+            <app-task [taskName]="task.name"></app-task>
+            }
+            }
         </div>
         <div class="task-state">
             <h3>In Process</h3>
+            @for (task of taskData; track task.id) {
+                @if (task.id_state == '2') {
+                <app-task [taskName]="task.name"></app-task>
+                }
+                }
         </div>
         <div class="task-state">
             <h3>Finished</h3>
+            @for (task of taskData; track task.id) {
+                @if (task.id_state == '3') {
+                <app-task [taskName]="task.name"></app-task>
+                }
+                }
         </div>
     </section>
     }

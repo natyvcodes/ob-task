@@ -1,34 +1,51 @@
 import { Component, inject, OnInit } from '@angular/core';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { AddtaskComponent } from '../addtask/addtask.component';
 import { AuthService } from '../auth.service';
+import { ApiService } from '../api.service';
+import { TaskComponent } from '../task/task.component';
+
+interface Task {
+  id: string;
+  name: string;
+  description: string;
+  user_id: string;
+  id_state: string;
+  id_category: string;
+}
 
 @Component({
   selector: 'app-my-tasks',
   standalone: true,
-  imports: [MatButtonModule, MatTooltipModule],
+  imports: [MatButtonModule, MatTooltipModule, TaskComponent],
   templateUrl: './my-tasks.component.html',
-  styleUrl: './my-tasks.component.css'
+  styleUrls: ['./my-tasks.component.css']
 })
 export class MyTasksComponent implements OnInit {
-    readonly dialog = inject(MatDialog);
-    isLoggedIn: boolean = false;
+  readonly dialog = inject(MatDialog);
+  isLoggedIn: boolean = false;
+  taskData: Task[] = [];
+  userId: string | null = '';
+  taskName: String[] = [];
 
-    constructor(private authService: AuthService){}
-    showTaskRegister(){
-    const dialogRef = this.dialog.open(AddtaskComponent,{
+  constructor(private authService: AuthService, private apiService: ApiService) { }
+
+
+  ngOnInit(): void {
+    this.userId = localStorage.getItem('userId');
+    this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
+      this.isLoggedIn = loggedIn;
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    this.apiService.userTask$.subscribe(tasks => {
+      this.taskData = tasks.flat();
     });
   }
-  ngOnInit(): void {
-    this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
-      this.isLoggedIn = loggedIn
+  showTaskRegister() {
+    const dialogRef = this.dialog.open(AddtaskComponent);
+    dialogRef.afterClosed().subscribe(result => {
+
     });
-    console.log(this.isLoggedIn);
   }
 }
