@@ -17,11 +17,11 @@ app.get('/', (req, res) => {
     res.json({ message: 'Hola' });
 
 })
-app.get('/users',db.getUser)
 app.post('/addTask', db.addTask)
 app.get('/categories', db.getCategories)
 app.get('/states', db.getStates)
 app.post('/login', db.authUser)
+app.post('/userTasks', db.getUserTasks)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

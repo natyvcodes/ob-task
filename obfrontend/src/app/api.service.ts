@@ -1,22 +1,68 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+
+interface Task {
+  id: string;
+  name: string;
+  description: string;
+  user_id: string;
+  id_state: string;
+  id_category: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000'
-  constructor(private http: HttpClient) { }
+  private apiUrl = 'http://localhost:3000';
+  private userId: string = '';
+  private userTasks = new BehaviorSubject<Task[]>([]);
+  public userTask$ = this.userTasks.asObservable();
+
+  constructor(private http: HttpClient, private authService: AuthService) {
+    this.authService.userId$.subscribe((userId: string) => {
+      this.userId = userId;
+      this.updateTasks(); // Llamar updateTasks aquí para asegurar que userId esté definido
+    });
+  }
+
   getMessage() {
-    return this.http.get<{ message: string }>(`${this.apiUrl}/`); }
-  getCategories(): Observable<String[]> {
-    return this.http.get<String[]>(`${this.apiUrl}/categories`)
+    return this.http.get<{ message: string }>(`${this.apiUrl}/`);
   }
-  getStates(): Observable<String[]> {
-    return this.http.get<String[]>(`${this.apiUrl}/states`)
+
+  getCategories(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/categories`);
   }
-  createTask(taskData: string):Observable<Object[]> {
-    return this.http.post<Object[]>(`${this.apiUrl}/addTask`,taskData)
+
+  getStates(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/states`);
   }
-} 
+
+  createTask(taskData: Task): Observable<Task> {
+    return this.http.post<Task>(`${this.apiUrl}/addTask`, taskData).pipe(
+      map(newTask => {
+        const currentTasks = this.userTasks.getValue();
+        this.userTasks.next([...currentTasks, newTask]);
+        return newTask;
+      })
+    );
+  }
+  
+  getUserTask(userId: string | null): Observable<Task[]> {
+    return this.http.post<Task[]>(`${this.apiUrl}/userTasks`, { id: userId }).pipe(
+      map(tasks => {
+        this.userTasks.next(tasks);
+        return tasks;
+      })
+    );
+  }
+
+  private updateTasks() {
+    if (this.userId) {
+      this.getUserTask(this.userId).subscribe();
+    }
+  }
+}
