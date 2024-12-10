@@ -15,8 +15,18 @@ export class AppHeaderComponent {
   openMenu: boolean = true;
   username: string | null = null;
   isLoggedIn: boolean = false
+  openAccountMenu: boolean =true;
   readonly dialog = inject(MatDialog);
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService){}
+
+  ngOnInit(): void {
+    this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
+      this.isLoggedIn = loggedIn
+    });
+    this.authService.userName$.subscribe((username:string | null) => {
+      this.username = username;
+    })
+    this.accountName();
   }
   accountName(){
     if(this.isLoggedIn){
@@ -35,20 +45,12 @@ export class AppHeaderComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
   showAccountMenu(){
-    alert('Hola')
+    this.openAccountMenu = !this.openAccountMenu;
   }
-  ngOnInit(): void {
-    this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
-      this.isLoggedIn = loggedIn
-    });
-    this.authService.userName$.subscribe((username:string | null) => {
-      this.username = username;
-    })
-    console.log(this.isLoggedIn);
-    this.accountName();
+  logOut(){
+    this.authService.logout()
   }
 }

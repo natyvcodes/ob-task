@@ -12,25 +12,28 @@
  }
 
  .nav {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+     display: flex;
+     align-items: center;
+     gap: 10px;
  }
+
  .account {
-    display: flex;
-    position: relative;
+     display: flex;
+     position: relative;
  }
+
  .account .button {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    background-color: hsl(133, 28%, 48%);
-    padding: 0 10px;
-    border-radius: 5px;
-    color: #d4ffde;
+     display: flex;
+     align-items: center;
+     cursor: pointer;
+     background-color: hsl(133, 28%, 48%);
+     padding: 0 10px;
+     border-radius: 5px;
+     color: #d4ffde;
  }
+
  .button svg {
-    margin-left: 5px;
+     margin-left: 5px;
  }
 
  .logo-container h1 {
@@ -73,32 +76,55 @@
      background-color: #589b67;
      color: #d4ffde;
  }
- .accountMenu {
-    position: absolute;
-    display: flex;
-    top: 57px;
-    padding: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0;
-    width: 90%;
+
+ .account-menu {
+     position: absolute;
+     display: flex;
+     top: 60px;
+     padding: 0;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     margin: 0;
+     width: 90%;
+     top: 1;
+     left: 6px;
 
  }
+ .account-menu-open {
+    display: none;
+ }
+
+ .account-menu::before {
+     content: url('/assets/arrow.svg');
+     position: absolute;
+     top: -22.5px;
+ }
+
  .account a {
-    text-align: center;
-    padding: 10px;
-    background-color: #589b67;
-    width: 100%;
- }
- .accountMenu a  li{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    
+     text-align: center;
+     padding: 10px 5px;
+     background-color: rgba(100, 172, 116, 0.9);
+     width: 100%;
+     color: #defee6;
+     text-decoration: none;
+     margin-bottom: 1px;
  }
 
+ .account a:hover {
+     background-color: #589b67;
+ }
+
+ .account-menu a li {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+
+ }
+.logout-btn {
+    cursor: pointer;
+}
  .toggleMenu a {
      text-decoration: none;
      text-transform: uppercase;
