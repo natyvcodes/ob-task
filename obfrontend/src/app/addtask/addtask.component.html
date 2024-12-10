@@ -8,10 +8,10 @@
         </svg>
     </button>
     <form [formGroup]="myForm" (ngSubmit)="submitForm()">
-        <label for="user_id">User</label>
+        <!-- <label for="user_id">User</label> -->
         <input formControlName="user_id" type="text" name="user_id" id="user_id" placeholder="Finish math">
 
-        <label for="name">Name</label>
+        <label for="name">Task</label>
         <input formControlName="name" type="text" name="name" id="name" placeholder="Finish math" autocomplete="name">
 
         <label for="description">Description</label>
