@@ -1,9 +1,11 @@
 <article class="container">
     <div class="inicio">
         <h2>Your tasks</h2>
+        @if (taskData.length != 0) {
         <button (click)="showTaskRegister()" class="btn-add-t">
             Add a new tasks
         </button>
+        }
     </div>
 
     @if (taskData.length != 0) {
@@ -12,25 +14,25 @@
             <h3>Pendings</h3>
             @for (task of taskData; track task.id) {
             @if (task.id_state == '1') {
-            <app-task [taskName]="task.name"></app-task>
+            <app-task class="task" [taskName]="task.name"></app-task>
             }
             }
         </div>
         <div class="task-state">
             <h3>In Process</h3>
             @for (task of taskData; track task.id) {
-                @if (task.id_state == '2') {
-                <app-task [taskName]="task.name"></app-task>
-                }
-                }
+            @if (task.id_state == '2') {
+            <app-task class="task" [taskName]="task.name"></app-task>
+            }
+            }
         </div>
         <div class="task-state">
             <h3>Finished</h3>
             @for (task of taskData; track task.id) {
-                @if (task.id_state == '3') {
-                <app-task [taskName]="task.name"></app-task>
-                }
-                }
+            @if (task.id_state == '3') {
+            <app-task class="task" [taskName]="task.name"></app-task>
+            }
+            }
         </div>
     </section>
     }

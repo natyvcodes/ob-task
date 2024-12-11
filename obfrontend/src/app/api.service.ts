@@ -21,11 +21,13 @@ export class ApiService {
   private userId: string = '';
   private userTasks = new BehaviorSubject<Task[]>([]);
   public userTask$ = this.userTasks.asObservable();
+  private Tasks = new BehaviorSubject<Task[]>([]);
+  public task$ = this.Tasks.asObservable();
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.authService.userId$.subscribe((userId: string) => {
       this.userId = userId;
-      this.updateTasks(); // Llamar updateTasks aquí para asegurar que userId esté definido
+      this.updateTasks();
     });
   }
 
@@ -50,7 +52,7 @@ export class ApiService {
       })
     );
   }
-  
+
   getUserTask(userId: string | null): Observable<Task[]> {
     return this.http.post<Task[]>(`${this.apiUrl}/userTasks`, { id: userId }).pipe(
       map(tasks => {
@@ -65,4 +67,26 @@ export class ApiService {
       this.getUserTask(this.userId).subscribe();
     }
   }
+  addLocalTasks(newTask: Task) {
+    const currentTasks = this.getLocalTask();
+    if (!Array.isArray(currentTasks)) {
+      console.error('Expected an array from getLocalTask, but got:', currentTasks);
+      return;
+    }
+    currentTasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(currentTasks));
+    this.Tasks.next(currentTasks);
+  }
+  
+  private getLocalTask(): Task[] {
+    const storedTasks = localStorage.getItem('tasks');
+    try {
+      const parsedTasks = storedTasks ? JSON.parse(storedTasks) : [];
+      return Array.isArray(parsedTasks) ? parsedTasks : [];
+    } catch (e) {
+      console.error('Error parsing tasks from localStorage', e);
+      return [];
+    }
+  }
+  
 }

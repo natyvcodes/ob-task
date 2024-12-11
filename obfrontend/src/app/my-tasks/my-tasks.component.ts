@@ -37,15 +37,25 @@ export class MyTasksComponent implements OnInit {
     this.userId = localStorage.getItem('userId');
     this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
+      console.log(loggedIn)
+      if (loggedIn) {
+        localStorage.removeItem('tasks')
+        this.apiService.userTask$.subscribe(tasks => {
+          this.taskData = tasks.flat();
+        });
+      } else {
+        this.apiService.task$.subscribe((tasks: Task[]) => {
+          this.taskData = tasks.flat();
+        })
+      }
     });
-    this.apiService.userTask$.subscribe(tasks => {
-      this.taskData = tasks.flat();
-    });
+
+
   }
   showTaskRegister() {
-    const dialogRef = this.dialog.open(AddtaskComponent);
-    dialogRef.afterClosed().subscribe(result => {
-
+    const dialogRef = this.dialog.open(AddtaskComponent,{
+      width:'370px'
     });
+  
   }
 }

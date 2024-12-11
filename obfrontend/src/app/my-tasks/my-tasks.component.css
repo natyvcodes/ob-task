@@ -1,12 +1,15 @@
 .container {
     width: 90%;
     margin: 0 auto;
-    padding: 30px;
     height: 90vh;
 }
 .inicio {
     display: flex;
     justify-content: space-between;
+    padding: 15px 0;
+}
+.inicio button {
+    padding: 0 12px;
 }
 h3 {
     text-decoration: underline;
@@ -14,10 +17,18 @@ h3 {
 .tasks-states-container {
     display: flex;
     text-align: center;
+    justify-content: center;
     width: 100%;
 }
 .task-state {
     width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.task {
+    width: 85%;
 }
 .notasks {
    display: flex;
@@ -38,4 +49,27 @@ h3 {
     border-radius: 10px;
     font-size:medium;
     margin: 10px 0;
+}
+@media (max-width: 900px) {
+    .tasks-states-container {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .tasks-states-container {
+        flex-direction: column;
+    }
+    .task-state {
+        width: 100%;
+    }
+    .notasks img {
+        width: 100px;
+    }
+    .notasks p {
+        font-size: 1.5em;
+    }
+    .notasks button {
+        padding: 10px 15px;
+    }
 }

@@ -26,7 +26,7 @@
      display: flex;
      align-items: center;
      cursor: pointer;
-     background-color: hsl(133, 28%, 48%);
+     background-color: #589d67;
      padding: 0 10px;
      border-radius: 5px;
      color: #d4ffde;
@@ -105,7 +105,7 @@
  .account a {
      text-align: center;
      padding: 10px 5px;
-     background-color: rgba(100, 172, 116, 0.9);
+     background-color: #64ac74e6;
      width: 100%;
      color: #defee6;
      text-decoration: none;
@@ -131,24 +131,20 @@
      color: black;
  }
 
- /* .toggleMenu a:hover {
-    background-color: #57b56d;
- } */
+
  @media (min-width: 600px) {
      header {
-         padding-right: 30px;
+         padding-right: 10px;
      }
  }
 
- @media (max-width: 600px) {
+ @media (max-width: 700px) {
      .menu {
          background-color: transparent;
          border: none;
          margin: 0 20px;
          display: block;
      }
-
-
      .menu svg {
          width: 40px;
          height: 40px;
@@ -178,7 +174,16 @@
              width: 210px;
          }
      }
+     @keyframes sliderinout {
+        from {
+            width: 210px;
+        }
 
+        to {
+            width: 0px;
+            opacity: 0;
+        }
+    }
      .closeMenu {
          background-color: transparent;
          border: none;
@@ -214,8 +219,11 @@
          text-decoration: none;
          color: black;
      }
-
+     .nav.hidden { display: none; }
+     .nav.sliding-out { animation-duration: 0.5s; animation-name: sliderout; }
      .active-nav {
-         display: none;
+        animation-duration: 0.5s;
+        animation-name: sliderinout;
+        display: none;
      }
  }
