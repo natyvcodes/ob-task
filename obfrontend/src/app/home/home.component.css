@@ -90,6 +90,9 @@ main {
     .intro-img {
         width: 50%;
     }
+    .cards-container {
+        flex-wrap: wrap;
+    }
     .intro-img img {
         width: 80%;
     }

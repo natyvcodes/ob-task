@@ -35,10 +35,14 @@ export class AddtaskComponent implements OnInit {
   id_s: number[] = []
   myForm: FormGroup;
   formSend: boolean = false;
-  userId: string | null  = '';
+  userId: string | null = '';
   taskData: Task[] = []
+  isLoggedIn: boolean = false;
 
-  constructor(private apiService: ApiService, private formBuilder: FormBuilder, private dialogRef: MatDialogRef<AddtaskComponent>) {
+  constructor(private apiService: ApiService,
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<AddtaskComponent>,
+    private authService: AuthService) {
     this.myForm = this.formBuilder.group({
       user_id: ['', Validators.required],
       name: ['', Validators.required],
@@ -49,6 +53,8 @@ export class AddtaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) { this.taskData = JSON.parse(storedTasks); }
     forkJoin({
       categories: this.apiService.getCategories().pipe(
         map(data => {
@@ -76,6 +82,9 @@ export class AddtaskComponent implements OnInit {
 
   }
   submitForm() {
+    this.authService.userLoggedInC.subscribe((isloggedIn: boolean) => {
+      this.isLoggedIn = isloggedIn;
+    })
     for (let i = 0; i < this.name_state.length; i++) {
       if (this.name_state[i] == this.myForm.get('id_state')?.value) {
         this.myForm.get('id_state')?.setValue(this.id_s[i]);
@@ -86,26 +95,42 @@ export class AddtaskComponent implements OnInit {
         this.myForm.get('id_category')?.setValue(this.id_c[i]);
       }
     }
-    this.userId = localStorage.getItem('userId');
-    this.myForm.get('user_id')?.setValue(this.userId)
-
-    if (this.myForm.valid) {
-      const data = this.myForm.value;
-      this.apiService.createTask(data).subscribe({
-        next: response => {
-          this.myForm.reset();
-          this.formSend = true;
-          this.taskAdded(this.formSend);
-          this.dialogRef.close(response);
-        },
-        error: error => {
-          alert('Error al añadir la tarea: ' + error.message);
+    if (this.isLoggedIn) {
+      this.userId = localStorage.getItem('userId');
+      this.myForm.get('user_id')?.setValue(this.userId)
+      if (this.myForm.valid) {
+        const data = this.myForm.value;
+        this.apiService.createTask(data).subscribe({
+          next: response => {
+            this.myForm.reset();
+            this.formSend = true;
+            this.taskAdded(this.formSend);
+            this.dialogRef.close(response);
+          },
+          error: error => {
+            alert('Error al añadir la tarea: ' + error.message);
+          }
         }
+        );
+      } else {
+        alert('completa todos los campos')
       }
-      );
+
     } else {
-      alert('completa todos los campos')
+      this.userId = 'default'
+      this.myForm.get('user_id')?.setValue(this.userId)
+      if (this.myForm.valid) {
+        const localTaskData: Task = this.myForm.value;
+        this.apiService.addLocalTasks(localTaskData)
+        this.dialogRef.close();
+        this.myForm.reset()
+      } else {
+        alert('completa todos los campos')
+      }
+
     }
+
+
 
   }
   taskAdded(confirm: boolean) {

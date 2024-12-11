@@ -19,14 +19,14 @@
 
         <label for="id_state">State</label>
         <select formControlName="id_state" name="id_state" id="id_state">
-            <option value="default">Choose: </option>
+            <option value="" selected>Choose: </option>
             @for (item of name_state; track $index) {
                 <option [value]="">{{name_state[$index]}}</option>
                 }
         </select>
         <label for="id_category">Category</label>
         <select formControlName="id_category" name="id_category" id="id_category">
-            <option value="default">Choose: </option>
+            <option value="" selected>Choose: </option>
             @for (item of id_c; track $index) {
             <option [value]="">{{name_category[$index]}}</option>
             }
