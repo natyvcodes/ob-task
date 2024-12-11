@@ -1,0 +1,63 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private apiUrl = 'http://localhost:3000';
+  private userLoggedIn = new BehaviorSubject<boolean>(false);
+  public userLoggedInC = this.userLoggedIn.asObservable();
+  private userName = new BehaviorSubject<string | null>(null);
+  public userName$ = this.userName.asObservable();
+  private userId = new BehaviorSubject<string>('');
+  public userId$ = this.userId.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.checkToken();
+  }
+  private checkToken(): void {
+    const token = localStorage.getItem('authToken');
+    const name = localStorage.getItem('userName'); 
+    const id = localStorage.getItem('userId')
+    if (token && name && id) {
+      this.userLoggedIn.next(true);
+      this.userName.next(name);
+      this.userId.next(id)
+    } else {
+      this.userLoggedIn.next(false);
+      this.userName.next(null);
+      this.userId.next('')
+    }
+  }
+  private saveToken(token: string, name: string, id:string): void {
+    localStorage.setItem('authToken', token);
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userId', id)
+    this.userName.next(name);
+    this.userLoggedIn.next(true);
+    this.userId.next(id)
+  }
+
+  login(email: string, password: string) {
+    return this.http.post<{ message: string; token: string, name: string, id:string }>(`${this.apiUrl}/login`, {
+      email,
+      password,
+    }).pipe(
+      tap(response => {
+        this.saveToken(response.token, response.name, response.id);
+      })
+    );
+  }
+
+  logout() {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userName')
+    localStorage.removeItem('userId')
+    this.userLoggedIn.next(false);
+  }
+
+}
+

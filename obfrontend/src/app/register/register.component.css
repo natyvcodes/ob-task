@@ -1,0 +1,66 @@
+form span a {
+    color: #5E73FF;
+    padding: 5px 2px;
+}
+h1 {
+    font-family: "Outfit", serif;
+}
+.form-container {
+    font-family: "Outfit", serif;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 1px 1px 1px #d5d5d5;
+
+}
+.form-container  p {
+    text-align: center;
+}
+.form-container h1 {
+    margin: 0;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.form-container  p a {
+    color: #1E8F40;
+}
+.btn_close {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.btn_close svg {
+    width: 30px;
+    height: 30px;
+
+}
+.btn_close svg path {
+    stroke: black;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+input[type="text"],input[type="password"]  {
+    padding: 16px;
+    border: none;
+    font-family: "Outfit", serif;
+    background-color: #dadada;
+    border-radius: 10px;
+}
+
+input[type="submit"] {
+    padding: 12px 0;
+    width: 120px;
+    border: none;
+    background-color: #a8febc;
+    font-family: "Outfit", serif;
+    border-radius: 10px;
+    font-size: 1em;
+    margin: 10px 0;
+    align-self: center;
+}
