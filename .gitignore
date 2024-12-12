@@ -1,5 +1,3 @@
 #Ignoring sensible files
 /obbackend/.env
-/obbackend/queries.js
-/obbackend/node_modules
-/obfrontend/node_modules
+
