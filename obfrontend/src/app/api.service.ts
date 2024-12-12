@@ -17,7 +17,7 @@ interface Task {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://to-do-app-26ya.onrender.com';
   private userId: string = '';
   private userTasks = new BehaviorSubject<Task[]>([]);
   public userTask$ = this.userTasks.asObservable();

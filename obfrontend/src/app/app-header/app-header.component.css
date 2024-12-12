@@ -9,6 +9,7 @@
  .logo-container {
      display: flex;
      align-items: center;
+     cursor: pointer;
  }
 
  .nav {
@@ -122,9 +123,6 @@
      padding: 0;
 
  }
-.logout-btn {
-    cursor: pointer;
-}
  .toggleMenu a {
      text-decoration: none;
      text-transform: uppercase;

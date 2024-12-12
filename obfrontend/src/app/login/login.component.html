@@ -8,7 +8,7 @@
         </svg>
     </button>
     <h1>Log in</h1>
-        <form [formGroup]="myLogin" (ngSubmit)="submitForm()">
+        <form [formGroup]="myLogin" (submit)="submitForm()">
             <label for="email">Email</label>
             <input formControlName="email" type="text" name="email" id="email" placeholder="example@gmail.com">
             <label for="password">Password</label>

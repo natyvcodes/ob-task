@@ -14,7 +14,7 @@ export class HomeComponent {
   readonly dialog = inject(MatDialog);
   showLogin(){
     const dialogRef = this.dialog.open(RegisterComponent,{
-      width: '350px'
+      width: '360px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
