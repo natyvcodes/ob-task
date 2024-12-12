@@ -1,0 +1,6 @@
+# Local Netlify folder
+.netlify
+#API 
+
+/obbackend/queries.js
+/obbackend/.env

@@ -1,8 +1,15 @@
 const { response, request } = require('express');
 const pgp = require('pg-promise')();
-const db = pgp('postgres://postgres:nataf2712@localhost:5433/obtasks')
+const dbConfig = {
+    host: 'dpg-ctd10lilqhvc73btq7rg-a.oregon-postgres.render.com',
+    port: 5432, 
+    database: 'obtask_jlvq', 
+    user: 'obtask_jlvq_user',
+    password: '7Og5XFDQzqfCVGyh6gc9VVxrrSciCmVP',
+    ssl: true
+}
+const db = pgp(dbConfig)
 const bcryptjs = require('bcryptjs'); const jwt = require('jsonwebtoken');
-
 const addTask = (request, response) => {
     const { name, description, user_id, id_state, id_category } = request.body;
     if (!name || !description || !user_id || !id_state || !id_category) {

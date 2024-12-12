@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +13,8 @@ import { LoginComponent } from '../login/login.component';
 export class HomeComponent {
   readonly dialog = inject(MatDialog);
   showLogin(){
-    const dialogRef = this.dialog.open(LoginComponent,{
-      width: '320px'
+    const dialogRef = this.dialog.open(RegisterComponent,{
+      width: '350px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
