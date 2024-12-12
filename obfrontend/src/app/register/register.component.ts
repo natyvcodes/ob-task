@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -40,8 +40,18 @@ export class RegisterComponent implements OnInit {
         const password = this.RegisterForm.get('password')?.value;
         this.authService.registerUser(name, email,password).subscribe({
           next: (response) => {
-            console.log('Login successful, token:', response.name);
             this.dialogRef.close()
+            this.authService.login(email, password).subscribe({
+              next: (response) => {
+                console.log('Login successful, token:', response.token);
+                this.dialogRef.close()
+                this.router.navigate(['/My-Tasks'])
+              },
+              error: (err) => {
+                this.errorMessage = err.error.message || 'Invalid email or password';
+                console.error('Error during login:', err);
+              }
+            })
             this.router.navigate(['/My-Tasks'])
           },
           error: (err) => {
