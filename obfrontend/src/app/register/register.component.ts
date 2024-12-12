@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, MatButtonModule, MatDialogModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
