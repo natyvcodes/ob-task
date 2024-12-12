@@ -1,0 +1,28 @@
+<article class="form-container">
+    <button mat-dialog-close class="btn_close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
+            <path fill="none" stroke="#ffffff" stroke-dasharray="12" stroke-dashoffset="12" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2" d="M12 12l7 7M12 12l-7 -7M12 12l-7 7M12 12l7 -7">
+                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="12;0" />
+            </path>
+        </svg>
+    </button>
+    <h1>Register</h1>
+        <form [formGroup]="RegisterForm" (submit)="submitForm()">
+            <label for="name">Name</label>
+            <input formControlName="name" type="text" name="name" id="name" placeholder="Zara Smith" autocomplete="name">
+            <label for="email">Email</label>
+            <input formControlName="email" type="text" name="email" id="email" placeholder="example@gmail.com" autocomplete="email">
+            <span class="password-message" [class.show-p-message]="emailIsValid == false">Error is missing a &#64; or .com .net etc..</span>
+            <label for="password">Password</label>
+            <input formControlName="password" type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+            <span class="password-message" [class.show-p-message]="passwordIsValid==false">At least a Mayus and a Minus</span>
+            <span class="password-message" [class.show-p-message]="passwordIsValid== false">At least a Number</span>
+            <span class="password-message" [class.show-p-message]="passwordIsValid ==false">At least a character $&#64;$!%*?&</span>
+            <label for="r-password">Password</label>
+            <input formControlName="confirmPassword" type="password" name="r-password" id="r-password" placeholder="Confirm your password" autocomplete="current-password">
+            <span class="password-message" [class.show-p-message]="passwordMatch== false">Password does not match</span>
+            <input type="submit" value="Register">
+        </form>
+    <p>Already have an account? <a href="#">SIGN IN</a></p>
+</article>
