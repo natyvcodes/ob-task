@@ -22,6 +22,7 @@ app.get('/categories', db.getCategories)
 app.get('/states', db.getStates)
 app.post('/login', db.authUser)
 app.post('/userTasks', db.getUserTasks)
+app.post('/registerUser', db.registerUser)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
