@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # Local Netlify folder
 .netlify
 #API 
 
 /obbackend/queries.js
 /obbackend/.env
+=======
+#Ignoring sensible files
+/obbackend/.env
+
+>>>>>>> develop
