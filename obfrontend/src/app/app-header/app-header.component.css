@@ -12,31 +12,6 @@
      cursor: pointer;
  }
 
- .nav {
-     display: flex;
-     align-items: center;
-     gap: 10px;
- }
-
- .account {
-     display: flex;
-     position: relative;
- }
-
- .account .button {
-     display: flex;
-     align-items: center;
-     cursor: pointer;
-     background-color: #589d67;
-     padding: 0 10px;
-     border-radius: 5px;
-     color: #d4ffde;
- }
-
- .button svg {
-     margin-left: 5px;
- }
-
  .logo-container h1 {
      margin: 0;
      padding: 0;
@@ -49,6 +24,13 @@
      margin: 0 5px;
 
  }
+
+ .nav {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+
 
  .menu {
      display: none;
@@ -78,6 +60,36 @@
      color: #d4ffde;
  }
 
+ .toggleMenu a {
+     text-decoration: none;
+     text-transform: uppercase;
+     color: black;
+ }
+
+ .account {
+     display: flex;
+     position: relative;
+ }
+
+ .account .btn-account {
+     display: flex;
+     align-items: center;
+     cursor: pointer;
+     background-color: #589d67;
+     padding: 0 10px;
+     border-radius: 5px;
+     color: #d4ffde;
+ }
+
+ .btn-account svg {
+     margin-left: 5px;
+     user-select: none;
+ }
+
+ .btn-account p {
+     user-select: none;
+ }
+
  .account-menu {
      position: absolute;
      display: flex;
@@ -91,10 +103,20 @@
      width: 90%;
      top: 1;
      left: 6px;
+     display: none;
 
  }
+
+ .account:hover .account-menu {
+     display: flex;
+ }
+
  .account-menu-open {
-    display: none;
+     display: none;
+ }
+
+ .account-menu a {
+     user-select: none;
  }
 
  .account-menu::before {
@@ -123,11 +145,7 @@
      padding: 0;
 
  }
- .toggleMenu a {
-     text-decoration: none;
-     text-transform: uppercase;
-     color: black;
- }
+
 
 
  @media (min-width: 600px) {
@@ -143,6 +161,7 @@
          margin: 0 20px;
          display: block;
      }
+
      .menu svg {
          width: 40px;
          height: 40px;
@@ -153,7 +172,7 @@
          top: 0;
          bottom: 0;
          margin: 0;
-         width: 210px;
+         width: 100%;
          right: 0;
          background-color: #4b6952;
          display: flex;
@@ -169,19 +188,21 @@
          }
 
          to {
-             width: 210px;
+             width: 100%;
          }
      }
-     @keyframes sliderinout {
-        from {
-            width: 210px;
-        }
 
-        to {
-            width: 0px;
-            opacity: 0;
-        }
-    }
+     @keyframes sliderinout {
+         from {
+             width: 210px;
+         }
+
+         to {
+             width: 0px;
+             opacity: 0;
+         }
+     }
+
      .closeMenu {
          background-color: transparent;
          border: none;
@@ -217,11 +238,19 @@
          text-decoration: none;
          color: black;
      }
-     .nav.hidden { display: none; }
-     .nav.sliding-out { animation-duration: 0.5s; animation-name: sliderout; }
+
+     .nav.hidden {
+         display: none;
+     }
+
+     .nav.sliding-out {
+         animation-duration: 0.5s;
+         animation-name: sliderout;
+     }
+
      .active-nav {
-        animation-duration: 0.5s;
-        animation-name: sliderinout;
-        display: none;
+         animation-duration: 0.5s;
+         animation-name: sliderinout;
+         display: none;
      }
  }

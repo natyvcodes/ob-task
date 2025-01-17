@@ -17,12 +17,16 @@ interface Task {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'https://to-do-app-26ya.onrender.com';
+  private apiUrl = 'http://localhost:3000';
+
   private userId: string = '';
+
   private userTasks = new BehaviorSubject<Task[]>([]);
   public userTask$ = this.userTasks.asObservable();
+
   private Tasks = new BehaviorSubject<Task[]>([]);
   public task$ = this.Tasks.asObservable();
+
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.authService.userId$.subscribe((userId: string) => {
@@ -52,7 +56,9 @@ export class ApiService {
       })
     );
   }
-
+  deleteTask(id: number) {
+    return this.http.post<{id: number}>(`${this.apiUrl}/deleteTask`, id)
+  }
   getUserTask(userId: string | null): Observable<Task[]> {
     return this.http.post<Task[]>(`${this.apiUrl}/userTasks`, { id: userId }).pipe(
       map(tasks => {
@@ -61,7 +67,6 @@ export class ApiService {
       })
     );
   }
-
   private updateTasks() {
     if (this.userId) {
       this.getUserTask(this.userId).subscribe();

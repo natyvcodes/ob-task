@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog} from '@angular/material/dialog';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -19,6 +20,8 @@ export class RegisterComponent implements OnInit {
   passwordIsValid!: boolean;
   emailIsValid!: boolean;
   errorMessage: string = ''
+  readonly dialog = inject(MatDialog);
+
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private dialogRef: DialogRef, private router: Router) {
     this.RegisterForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -95,5 +98,12 @@ export class RegisterComponent implements OnInit {
         }
         console.log(this.emailIsValid)
     })
+  }
+  openLogIn() { 
+    this.dialogRef.close()
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '360px'
+    });
+   
   }
 }
