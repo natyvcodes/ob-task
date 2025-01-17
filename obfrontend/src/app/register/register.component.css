@@ -73,3 +73,6 @@ input[type="submit"] {
     padding: 2px 4px;
     display: block;
 }
+.log-btn {
+    cursor: pointer;
+}

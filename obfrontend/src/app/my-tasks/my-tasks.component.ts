@@ -37,7 +37,6 @@ export class MyTasksComponent implements OnInit {
     this.userId = localStorage.getItem('userId');
     this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
       this.isLoggedIn = loggedIn;
-      console.log(loggedIn)
       if (loggedIn) {
         localStorage.removeItem('tasks')
         this.apiService.userTask$.subscribe(tasks => {

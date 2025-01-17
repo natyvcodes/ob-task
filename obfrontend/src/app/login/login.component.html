@@ -10,13 +10,11 @@
     <h1>Log in</h1>
         <form [formGroup]="myLogin" (submit)="submitForm()">
             <label for="email">Email</label>
-            <input formControlName="email" type="text" name="email" id="email" placeholder="example@gmail.com">
+            <input formControlName="email" type="text" name="email" id="email" placeholder="example@gmail.com" autocomplete="email">
             <label for="password">Password</label>
-            <input formControlName="password" type="password" name="password" id="password" placeholder="Password">
-            <span><a href="">Did you forget your password?</a></span>
+            <input formControlName="password" type="password" name="password" id="password" placeholder="Password" autocomplete="current-password">
+            <span class="er-message">{{errorMessage}}</span>
             <input type="submit" value="Log in">
         </form>
-    <p>You don't have an account? <a href="#">SIGN IN</a></p>
-    <p>OR</p>
-    <p><a href="#">Continue without an account</a></p>
+    <p>You don't have an account? <a (click)="openRegister()" class="reg-btn">SIGN IN</a></p>
 </article>
