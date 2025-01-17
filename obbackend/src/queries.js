@@ -1,12 +1,11 @@
 const { response, request } = require('express');
 const pgp = require('pg-promise')();
 const dbConfig = {
-    host: 'dpg-ctd10lilqhvc73btq7rg-a.oregon-postgres.render.com',
-    port: 5432,
-    database: 'obtask_jlvq',
-    user: 'obtask_jlvq_user',
-    password: '7Og5XFDQzqfCVGyh6gc9VVxrrSciCmVP',
-    ssl: true
+    host: 'localhost',
+    port: 5433,
+    database: 'obtasks',
+    user: 'postgres',
+    password: 'nataf2712'
 };
 const db = pgp(dbConfig);
 const bcryptjs = require('bcryptjs'); const jwt = require('jsonwebtoken');
@@ -50,11 +49,11 @@ const authUser = async (request, response) => {
     try {
         const user = await db.oneOrNone('SELECT email, password, name, id FROM usuario WHERE email = $1', [email]);
         if (!user) {
-            return response.status(401).json({ message: 'Invalid email or password' });
+            return response.status(401).json({ message: 'User does not exist' });
         }
         const passwordMatch = await bcryptjs.compare(password, user.password);
         if (!passwordMatch) {
-            return response.status(401).json({ message: 'Invalid email or password' });
+            return response.status(401).json({ message: 'Invalid password' });
         }
         const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
         response.status(200).json({ message: 'User authenticated', token, name: user.name, id: user.id });
@@ -77,7 +76,7 @@ const getUserTasks = async (request, response) => {
     }
 };
 const registerUser = (request, response) => {
-    const { name, email, password} = request.body;
+    const { name, email, password } = request.body;
     if (!name || !email || !password) {
         return response.status(400).json({ message: 'Todos los campos son requeridos' });
     }
@@ -90,6 +89,22 @@ const registerUser = (request, response) => {
             response.status(500).send(`Error adding user: ${error.message}`);
         });
 }
+const deleteTask = async (request, response) => {
+    const { id } = request.body;
+    if (!id) {
+        return response.status(400).json({ message: "Invalid or missing task ID" });
+    }
+    try {
+        const result = await db.result("DELETE FROM task WHERE id = $1", [id]);
+        if (result.rowCount === 0) {
+            return response.status(404).json({ message: "Task not found" });
+        }
+        return response.status(204).send();
+    } catch (error) {
+        return response.status(500).json({ message: "Error deleting task", error: error.message });
+    }
+}
+
 
 module.exports = {
     addTask,
@@ -97,5 +112,6 @@ module.exports = {
     getStates,
     authUser,
     getUserTasks,
-    registerUser
+    registerUser,
+    deleteTask
 }
