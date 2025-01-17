@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { LoginComponent } from '../login/login.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ComponentRef } from '@angular/core';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class AppHeaderComponent {
     if (this.isLoggedIn) {
       this.username = this.username;
     } else {
-      this.username = "Sign in"
+      this.username = "Log in"
     }
   }
 
@@ -43,11 +44,8 @@ export class AppHeaderComponent {
   }
   showLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {
-      width: '320px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
+      width: '340px'});
+    this.showMenu()
   }
   showAccountMenu() {
     this.openAccountMenu = !this.openAccountMenu;
