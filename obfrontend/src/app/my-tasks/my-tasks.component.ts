@@ -29,6 +29,7 @@ export class MyTasksComponent implements OnInit {
   taskData: Task[] = [];
   userId: string | null = '';
   taskName: String[] = [];
+  taskId: String = ''
 
   constructor(private authService: AuthService, private apiService: ApiService) { }
 

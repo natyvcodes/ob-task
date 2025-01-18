@@ -14,7 +14,7 @@
             <h3>Pendings</h3>
             @for (task of taskData; track task.id) {
             @if (task.id_state == '1') {
-            <app-task class="task" [taskName]="task.name"></app-task>
+            <app-task class="task" [taskName]="task.name" [taskId]="task.id"></app-task>
             }
             }
         </div>
@@ -22,7 +22,7 @@
             <h3>In Process</h3>
             @for (task of taskData; track task.id) {
             @if (task.id_state == '2') {
-            <app-task class="task" [taskName]="task.name"></app-task>
+            <app-task class="task" [taskName]="task.name" [taskId]="task.id"></app-task>
             }
             }
         </div>
@@ -30,7 +30,7 @@
             <h3>Finished</h3>
             @for (task of taskData; track task.id) {
             @if (task.id_state == '3') {
-            <app-task class="task" [taskName]="task.name"></app-task>
+            <app-task class="task" [taskName]="task.name" [taskId]="task.id"></app-task>
             }
             }
         </div>
