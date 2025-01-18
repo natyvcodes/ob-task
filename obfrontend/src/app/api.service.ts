@@ -56,9 +56,18 @@ export class ApiService {
       })
     );
   }
-  deleteTask(id: number) {
-    return this.http.post<{id: number}>(`${this.apiUrl}/deleteTask`, id)
+
+  deleteTask(id: string): Observable<{ id: string }> {
+    return this.http.post<{ id: string }>(`${this.apiUrl}/deleteTask`, { id }).pipe(
+      map(response => {
+        const currentTasks = this.userTasks.getValue().flat();
+        const updatedTasks = currentTasks.filter(task => String(task.id) !== String(response.id));
+        this.userTasks.next(updatedTasks);
+        return response;
+      })
+    );
   }
+
   getUserTask(userId: string | null): Observable<Task[]> {
     return this.http.post<Task[]>(`${this.apiUrl}/userTasks`, { id: userId }).pipe(
       map(tasks => {
@@ -82,7 +91,7 @@ export class ApiService {
     localStorage.setItem('tasks', JSON.stringify(currentTasks));
     this.Tasks.next(currentTasks);
   }
-  
+
   private getLocalTask(): Task[] {
     const storedTasks = localStorage.getItem('tasks');
     try {
@@ -93,5 +102,5 @@ export class ApiService {
       return [];
     }
   }
-  
+
 }
