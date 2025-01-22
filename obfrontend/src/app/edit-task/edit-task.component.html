@@ -1,0 +1,25 @@
+<article class="task-info-card">
+    <form [formGroup]="EditForm" (submit)="submitForm()" class="info-container">
+        <label for="title">Title:</label>
+        <input formControlName="title" id="title" #textareaRef [class.edit]="!editOpen" [class.no-edit]="editOpen" type="text" value="{{taskInfo.name}}"
+            [readOnly]="editOpen">
+        <label for="t-description">Description:</label>
+        <textarea formControlName="description" #textareaRef name="t-description" id="t-description" [readOnly]="editOpen"
+            [class.descrip-no-edit]="editOpen">{{taskInfo.description}}</textarea>
+        <label for="category">Category</label>
+        <select formControlName="category" name="category" id="category" class="ctg-edit" [class.ctg-edit]="!editOpen" [class.ctg-no-edit]="editOpen">
+            <option value="select" selected>{{setCategory(taskInfo.id_category)}}</option>
+            @for (item of getRemainingCategories(taskInfo.id_category); track $index; let idx = $index) {
+                <option value="">{{item}}</option>
+            }
+        </select>
+        <div class="task-info-btns">
+            @if(editOpen){
+            <button (click)="editInfo()">EDIT</button>
+            }@else {
+            <button (click)="editInfo()">COMPLETE</button>
+            }
+            <button (click)="closeDialog(taskInfo.id)">DELETE</button>
+        </div>
+    </form>
+</article>

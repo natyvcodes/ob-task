@@ -6,15 +6,7 @@ import { AddtaskComponent } from '../addtask/addtask.component';
 import { AuthService } from '../auth.service';
 import { ApiService } from '../api.service';
 import { TaskComponent } from '../task/task.component';
-
-interface Task {
-  id: string;
-  name: string;
-  description: string;
-  user_id: string;
-  id_state: string;
-  id_category: string;
-}
+import { Task } from '../api.service';
 
 @Component({
   selector: 'app-my-tasks',
@@ -30,6 +22,7 @@ export class MyTasksComponent implements OnInit {
   userId: string | null = '';
   taskName: String[] = [];
   taskId: String = ''
+  taskInfo!: Task;
 
   constructor(private authService: AuthService, private apiService: ApiService) { }
 

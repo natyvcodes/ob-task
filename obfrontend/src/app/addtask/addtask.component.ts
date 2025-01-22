@@ -10,14 +10,7 @@ import { forkJoin, of } from 'rxjs';
 import { TaskAddedDialogComponent } from '../task-added-dialog/task-added-dialog.component';
 import { AuthService } from '../auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
-interface Task {
-  id: string;
-  name: string;
-  description: string;
-  user_id: string;
-  id_state: string;
-  id_category: string;
-}
+import { Task } from '../api.service';
 @Component({
   selector: 'app-addtask',
   standalone: true,

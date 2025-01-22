@@ -4,13 +4,13 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
-interface Task {
+export interface Task {
   id: string;
   name: string;
   description: string;
   user_id: string;
   id_state: string;
-  id_category: string;
+  id_category: number;
 }
 
 @Injectable({
