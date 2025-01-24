@@ -1,23 +1,34 @@
-<article class="task-info-card">
-    <form [formGroup]="EditForm" (submit)="submitForm()" class="info-container">
-        <label for="title">Title:</label>
-        <input formControlName="title" id="title" #textareaRef [class.edit]="!editOpen" [class.no-edit]="editOpen" type="text" value="{{taskInfo.name}}"
-            [readOnly]="editOpen">
+<article class="task-info-card" class="">
+    <form [formGroup]="EditForm" class="info-container">
+        <input class="task_id" formControlName="id" type="text" value="{{taskInfo.id}}">
+        <label for="name">Title:</label>
+        <input formControlName="name" id="name" #textareaRef [class.edit]="!editOpen" 
+        [class.no-edit]="editOpen" type="text" [value]="taskInfo.name"
+        [readOnly]="editOpen">
+
         <label for="t-description">Description:</label>
         <textarea formControlName="description" #textareaRef name="t-description" id="t-description" [readOnly]="editOpen"
             [class.descrip-no-edit]="editOpen">{{taskInfo.description}}</textarea>
+
         <label for="category">Category</label>
-        <select formControlName="category" name="category" id="category" class="ctg-edit" [class.ctg-edit]="!editOpen" [class.ctg-no-edit]="editOpen">
-            <option value="select" selected>{{setCategory(taskInfo.id_category)}}</option>
-            @for (item of getRemainingCategories(taskInfo.id_category); track $index; let idx = $index) {
-                <option value="">{{item}}</option>
+        <select formControlName="id_category" name="category" id="category" class="slt-edit" [class.slt-edit]="!editOpen" [class.slt-no-edit]="editOpen">
+            @for (item of getCategories(); track item.value) {
+                <option value="{{item.index}}" [selected]="item.index === taskInfo.id_category">{{item.value}}</option>
             }
         </select>
+
+        <label for="state">State:</label>
+        <select formControlName="id_state" name="state" id="state" class="slt-edit" [class.slt-edit]="!editOpen" [class.slt-no-edit]="editOpen">
+            @for (item of getStates(); track item.value) {
+                <option value="{{item.index}}" [selected]="item.index === taskInfo.id_state">{{item.value}}</option>
+            }
+        </select>
+
         <div class="task-info-btns">
             @if(editOpen){
             <button (click)="editInfo()">EDIT</button>
             }@else {
-            <button (click)="editInfo()">COMPLETE</button>
+            <button (click)="editInfo()" (click)="submitForm()">COMPLETE</button>
             }
             <button (click)="closeDialog(taskInfo.id)">DELETE</button>
         </div>
