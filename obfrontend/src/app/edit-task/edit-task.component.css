@@ -1,7 +1,6 @@
 .task-info-card {
     color: black;
     text-align: left;
-    border-radius: 10px;
     padding: 8px;
     box-shadow: 0px 0px 1px black;
 }
@@ -40,11 +39,7 @@
     cursor: text;
     font-family: 'Courier New', Courier, monospace;
     background-color: #ffff;
-}
-
-.t-name {
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 1em;
 }
 
 .task-info-btns {
@@ -82,31 +77,37 @@
     background-color: transparent;
     color: red;
 }
-
-.no-edit {
-    width: 100%;
-    border: none;
+input {
     font-size: 1em;
+    margin: 10px 0;
+    width: 100%;
+}
+.no-edit {
+    border: none;
     font-family: "Outfit", serif;
     outline: none;
-    margin: 10px 0;
 }
 
 .edit {
     outline: auto;
     border: 1px solid black;
-    margin: 10px 0;
     height: 20px;
 }
-.ctg-no-edit {
+select {
+    margin: 6px 0;
+    font-size: 1em;
+} 
+.slt-no-edit {
     pointer-events: none;
     font-family: "Outfit", serif;
     border: none;
-    font-size: 1em;
-    margin: 4px 0;
     padding: 0;
+    color: blue;
 
 }
-.ctg-edit {
+.slt-edit {
     pointer-events:visible;
+}
+.task_id {
+    display: none;
 }
