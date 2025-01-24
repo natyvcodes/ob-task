@@ -20,25 +20,23 @@ export class MyTasksComponent implements OnInit {
   isLoggedIn: boolean = false;
   taskData: Task[] = [];
   userId: string | null = '';
-  taskName: String[] = [];
-  taskId: String = ''
   taskInfo!: Task;
 
-  constructor(private authService: AuthService, private apiService: ApiService) { }
+  constructor(private authService: AuthService, private apiService: ApiService) {}
 
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
     this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
-      this.isLoggedIn = loggedIn;
+      this.isLoggedIn = loggedIn; 
       if (loggedIn) {
         localStorage.removeItem('tasks')
         this.apiService.userTask$.subscribe(tasks => {
-          this.taskData = tasks.flat();
+          this.taskData = tasks.flat().sort((a, b) => this.sortByCategoria(a, b));
         });
       } else {
         this.apiService.task$.subscribe((tasks: Task[]) => {
-          this.taskData = tasks.flat();
+          this.taskData = tasks.flat().sort((a, b) => this.sortByCategoria(a, b));
         })
       }
     });
@@ -50,5 +48,8 @@ export class MyTasksComponent implements OnInit {
       width:'370px'
     });
   
+  }
+  sortByCategoria(a: Task, b: Task): number {
+    return a.id_category - b.id_category; 
   }
 }
