@@ -8,12 +8,12 @@
         }
     </div>
 
-    @if (taskData.length != 0) {
+    @if (taskData.length) {
     <section class="tasks-states-container">
         <div class="task-state">
             <h3>Pendings</h3>
             @for (task of taskData; track task.id; let idx = $index) {
-            @if (task.id_state == '1') {
+            @if (task.id_state == 1) {
             <app-task class="task"  [taskInfo]="taskData[idx]"></app-task>
             }
             }
@@ -21,7 +21,7 @@
         <div class="task-state">
             <h3>In Process</h3>
             @for (task of taskData; track task.id; let idx = $index) {
-            @if (task.id_state == '2') {
+            @if (task.id_state == 2) {
             <app-task class="task" [taskInfo]="taskData[idx]"></app-task>
             }
             }
@@ -29,7 +29,7 @@
         <div class="task-state">
             <h3>Finished</h3>
             @for (task of taskData; track task.id ; let idx = $index) {
-            @if (task.id_state == '3') {
+            @if (task.id_state == 3) {
             <app-task class="task" [taskInfo]="taskData[idx]"></app-task>
             }
             }
@@ -37,7 +37,7 @@
     </section>
     }
     @else {
-    <section class="notasks">
+    <section class="notasks" [class.display]="taskData.length == 0">
         <p>You don't have any tasks</p>
         <img src="assets\notasks.png" alt="">
         <button (click)="showTaskRegister()" class="btn-add-t">
