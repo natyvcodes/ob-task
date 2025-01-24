@@ -9,9 +9,10 @@ export interface Task {
   name: string;
   description: string;
   user_id: string;
-  id_state: string;
+  id_state: number;
   id_category: number;
 }
+export type UpdateTask = Omit<Task, "user_id">
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ApiService {
 
   private userId: string = '';
 
-  private userTasks = new BehaviorSubject<Task[]>([]);
+  public userTasks = new BehaviorSubject<Task[]>([]);
   public userTask$ = this.userTasks.asObservable();
 
   private Tasks = new BehaviorSubject<Task[]>([]);
@@ -56,6 +57,25 @@ export class ApiService {
       })
     );
   }
+  updateTask(updateTask: UpdateTask): Observable<UpdateTask> {
+    return this.http.post<UpdateTask>(`${this.apiUrl}/updateTask`, updateTask).pipe(
+      map(updatedTask => {
+        const currentTasks = this.userTasks.getValue();
+        const taskIndex = currentTasks.findIndex(task => task.id === updatedTask.id);
+        if (taskIndex !== -1) {
+          const updatedTasks = [...currentTasks];
+          updatedTasks[taskIndex] = { ...updatedTasks[taskIndex], ...updatedTask };
+          this.userTasks.next(updatedTasks);
+        }
+
+        return updatedTask;
+      })
+    );
+  }
+
+
+
+
 
   deleteTask(id: string): Observable<{ id: string }> {
     return this.http.post<{ id: string }>(`${this.apiUrl}/deleteTask`, { id }).pipe(
@@ -76,11 +96,7 @@ export class ApiService {
       })
     );
   }
-  private updateTasks() {
-    if (this.userId) {
-      this.getUserTask(this.userId).subscribe();
-    }
-  }
+
   addLocalTasks(newTask: Task) {
     const currentTasks = this.getLocalTask();
     if (!Array.isArray(currentTasks)) {
@@ -102,5 +118,9 @@ export class ApiService {
       return [];
     }
   }
-
+  private updateTasks() {
+    if (this.userId) {
+      this.getUserTask(this.userId).subscribe();
+    }
+  }
 }

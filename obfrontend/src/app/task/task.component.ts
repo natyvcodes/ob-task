@@ -34,7 +34,6 @@ export class TaskComponent {
       data: { taskInfo: this.taskInfo }
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
       if (result > 0 && result != undefined) {
         this.deleteTask(result)
       }
