@@ -27,9 +27,6 @@
             <a routerLink="/My-Tasks" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="onLinkClick()">
                 <li>Your Tasks</li>
             </a>
-            <a routerLink="/task" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="onLinkClick()">
-                <li>About us</li>
-            </a>
         </ul>
         <div class="account">
             <a class="btn-account" mat-button (click)="isLoggedIn ? showAccountMenu():showLogin()">
@@ -44,7 +41,7 @@
                     <a (click)="logOut()" class="logout-btn">
                         Log out
                     </a>
-                    <a href="">
+                    <a routerLink="/settings" routerLinkActive="active" ariaCurrentWhenActive="page" (click)="showMenu()">
                         Setting
                     </a>
                 </div>}

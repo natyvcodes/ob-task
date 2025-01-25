@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { LoginComponent } from '../login/login.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ComponentRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class AppHeaderComponent {
   isLoggedIn: boolean = false
   openAccountMenu: boolean = true;
   readonly dialog = inject(MatDialog);
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.userLoggedInC.subscribe((loggedIn: boolean) => {
@@ -52,6 +52,7 @@ export class AppHeaderComponent {
   }
   logOut() {
     this.authService.logout()
+    this.router.navigate([''])
   }
   onLinkClick(): void {
     this.showMenu();
