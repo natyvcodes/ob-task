@@ -1,13 +1,18 @@
 <main>
     <section class="intro">
         <div class="intro-text">
-            <p><span class="welcome-text">Welcome to</span> <span class="tooltip-t"> OB Task!</span></p>
+            <p><span class="welcome-text">Welcome to</span> <span matTooltipPosition="above" class="tooltip-t" #tooltip="matTooltip"
+                matTooltip="Organice Brain Tasks!"
+                aria-label="Button that displays a tooltip that hides when scrolled out of the container"> OB Task!</span></p>
             <p> Here, you can organize your tasks, categorize them,
                 and
                 always stay aware of what you
                 need to do. Enjoy being productive!</p>
             <div class="intro-button">
-                <button class="btn-start" mat-button (click)="showLogin()">Join us</button>
+                @if(!userIsLogged){
+                    <button class="btn-start"  mat-button (click)="showLogin()">Join us</button>
+                }
+                
             </div>
         </div>
         <div class="intro-img">
