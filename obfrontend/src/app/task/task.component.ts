@@ -20,7 +20,8 @@ export class TaskComponent {
 
   deleteTask(taskId: string) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '300px'
+      width: '300px',
+      data: { text: "Are you sure you want to delete this task?"}
     })
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
