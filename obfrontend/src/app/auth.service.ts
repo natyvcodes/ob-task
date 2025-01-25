@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -43,22 +43,23 @@ export class AuthService {
       this.userId.next('')
     }
   }
-  private saveToken(token: string, name: string, id: string): void {
+  private saveToken(token: string, name: string, id: string, email: string): void {
     localStorage.setItem('authToken', token);
     localStorage.setItem('userName', name);
     localStorage.setItem('userId', id)
+    localStorage.setItem('userEmail', email);
     this.userName.next(name);
     this.userLoggedIn.next(true);
     this.userId.next(id)
   }
 
   login(email: string, password: string) {
-    return this.http.post<{ message: string; token: string, name: string, id: string }>(`${this.apiUrl}/login`, {
+    return this.http.post<{ message: string; token: string, name: string, id: string, email: string  }>(`${this.apiUrl}/login`, {
       email,
       password,
     }).pipe(
       tap(response => {
-        this.saveToken(response.token, response.name, response.id);
+        this.saveToken(response.token, response.name, response.id, response.email);
       }),
       catchError(error => {
         const errorMsg = error.error?.message || 'Invalid email or password';
@@ -76,10 +77,19 @@ export class AuthService {
       })
     )
   }
+  deleteUser(id: string): Observable<{ id: string }> {
+      return this.http.post<{ id: string }>(`${this.apiUrl}/deleteUser`, { id }).pipe(
+        map(response => {
+          this.logout()
+          return response;
+        })
+      );
+    }
   logout(): void {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userName')
     localStorage.removeItem('userId')
+    localStorage.removeItem('userEmail')
     this.userLoggedIn.next(false);
   }
 
