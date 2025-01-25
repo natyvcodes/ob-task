@@ -1,3 +1,4 @@
+
 body {
     margin:0;
     padding: 0;
@@ -31,7 +32,8 @@ main {
 }
 .tooltip-t {
     text-decoration: underline;
-    color: #ff6200; ;
+    color: #ff6200;
+    cursor: pointer;
 }
 .intro-img {
     display: flex;
