@@ -3,7 +3,7 @@
 /obbackend/src/queries.js
 /obbackend/node_modules
 /obfrontend/node_modules
-
-
+/obfrontend/src/app/api.service.ts
+/obfrontend/src/app/auth.service.ts
 # Local Netlify folder
 .netlify
