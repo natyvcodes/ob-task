@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: 'https://obtask.netlify.app',
+    origin: 'http://localhost:4200',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
