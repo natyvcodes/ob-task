@@ -1,0 +1,6 @@
+[build]
+  command = "npm run build"
+  publish = "dist/ob-tasks-app"
+
+[context.production.environment]
+  API_URL = "https://ob-task-4d65.vercel.app"
