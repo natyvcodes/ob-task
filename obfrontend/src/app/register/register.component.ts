@@ -38,7 +38,6 @@ export class RegisterComponent implements OnInit {
 
   }
   submitForm() {
-    console.log(this.emailIsValid && this.passwordIsValid && this.passwordMatch && this.RegisterForm.valid)
       if(this.emailIsValid && this.passwordIsValid && this.passwordMatch && this.RegisterForm.valid){
         const name = this.RegisterForm.get('name')?.value;
         const email = this.RegisterForm.get('email')?.value;
@@ -48,7 +47,6 @@ export class RegisterComponent implements OnInit {
             this.dialogRef.close()
             this.authService.login(email, password).subscribe({
               next: (response) => {
-                console.log('Login successful, token:', response.token);
                 this.dialogRef.close()
                 this.router.navigate(['/My-Tasks'])
               },
@@ -96,7 +94,6 @@ export class RegisterComponent implements OnInit {
         }else {
           this.emailIsValid = false;
         }
-        console.log(this.emailIsValid)
     })
   }
   openLogIn() { 
