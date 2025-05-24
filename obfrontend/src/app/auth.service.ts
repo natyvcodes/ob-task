@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, map } from 'rxjs';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = environment.apiUrl;
+private apiUrl = environment.url;
 
   private userLoggedIn = new BehaviorSubject<boolean>(false);
   public userLoggedInC = this.userLoggedIn.asObservable();

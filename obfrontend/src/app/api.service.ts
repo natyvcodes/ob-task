@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 export interface Task {
   id: string;
   name: string;
@@ -18,7 +18,7 @@ export type UpdateTask = Omit<Task, "user_id">
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.url;
 
   private userId: string = '';
 
