@@ -1,0 +1,113 @@
+.task-info-card {
+    color: black;
+    text-align: left;
+    padding: 8px;
+    box-shadow: 0px 0px 1px black;
+}
+
+.info-container {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-container p {
+    margin: 10px 0;
+}
+
+#t-description {
+    resize: none;
+    height: 100px;
+    box-sizing: border-box;
+    user-select: none;
+    padding: 10px;
+    margin: 8px 0;
+    width: 90%;
+    font-size: 1em;
+}
+
+.descrip-no-edit {
+    border-radius: 10px;
+    background-color: #d7d7d7;
+    font-family: "Outfit", serif;
+    outline: none;
+}
+
+.descrip-edit {
+    width: 90%;
+    user-select: text;
+    cursor: text;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ffff;
+    font-size: 1em;
+}
+
+.task-info-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.task-info-btns button {
+    padding: 10px 10px;
+    width: 100px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.task-info-btns button:first-child {
+    background-color: transparent;
+    color: blueviolet;
+    border: 2px solid blueviolet;
+}
+
+.task-info-btns button:first-child:hover {
+    background-color: blueviolet;
+    color: #ffff;
+}
+
+.task-info-btns button:last-child {
+    background-color: red;
+    border: 2px solid red;
+    color: #ffff;
+}
+
+.task-info-btns button:last-child:hover {
+    background-color: transparent;
+    color: red;
+}
+input {
+    font-size: 1em;
+    margin: 10px 0;
+    width: 100%;
+}
+.no-edit {
+    border: none;
+    font-family: "Outfit", serif;
+    outline: none;
+}
+
+.edit {
+    outline: auto;
+    border: 1px solid black;
+    height: 20px;
+}
+select {
+    margin: 6px 0;
+    font-size: 1em;
+} 
+.slt-no-edit {
+    pointer-events: none;
+    font-family: "Outfit", serif;
+    border: none;
+    padding: 0;
+    color: blue;
+
+}
+.slt-edit {
+    pointer-events:visible;
+}
+.task_id {
+    display: none;
+}

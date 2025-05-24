@@ -1,0 +1,21 @@
+.container {
+    padding: 16px;
+    text-align: center;
+}
+button{
+    font-family: "Outfit", serif;
+    padding: 10px 12px;
+    margin: 2px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.9em;
+    
+} 
+button:first-child {
+    background-color: red;
+    color: white;
+}
+button:last-child {
+    background-color: #83c893;
+    color: #000000;
+}

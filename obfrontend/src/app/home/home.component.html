@@ -1,0 +1,92 @@
+<main>
+    <section class="intro">
+        <div class="intro-text">
+            <p><span class="welcome-text">Welcome to</span> <span matTooltipPosition="above" class="tooltip-t" #tooltip="matTooltip"
+                matTooltip="Organice Brain Tasks!"
+                aria-label="Button that displays a tooltip that hides when scrolled out of the container"> OB Task!</span></p>
+            <p> Here, you can organize your tasks, categorize them,
+                and
+                always stay aware of what you
+                need to do. Enjoy being productive!</p>
+            <div class="intro-button">
+                @if(!userIsLogged){
+                    <button class="btn-start"  mat-button (click)="showLogin()">Join us</button>
+                }
+                
+            </div>
+        </div>
+        <div class="intro-img">
+            <img class="intro-img" src="assets/intro_2.jpg" alt="People working" srcset="">
+        </div>
+    </section>
+    <section class="advan-container">
+        <h2>The Advantages of an Organized Life</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48">
+                        <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="4"
+                            d="M33 41c-5.48 3.003-10 3-16 1c-6.076-2.026-10-9-10-14c0-2.744 4.114-4.372 5.529-4.85a.69.69 0 0 0 .471-.648V15a3.5 3.5 0 1 1 7 0v-2.5a3.5 3.5 0 1 1 7 0V15a3.5 3.5 0 1 1 7 0V7.5a3.5 3.5 0 0 1 7 0v20.732c0 2.472-.592 4.928-2.038 6.934C37.492 37.205 35.357 39.708 33 41" />
+                    </svg>
+                </div>
+                <div class="text">
+                    <h3>Makes your life easier</h3>
+                    <p>With an organized life, you can manage your time effectively, leading to a better quality of
+                        life.</p>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48">
+                        <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                            <path d="M41 25c0 9.941-8.059 18-18 18S5 34.941 5 25S13.059 7 23 7" />
+                            <path d="M12 28.5c8.5 0 12-.5 19-9.5" />
+                            <path d="M23 19h8v8m0-22v4.5M43.5 17H39m1.89-10L37 10.89" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="text">
+                    <h3>Increase your productivity</h3>
+                    <p>
+                        You will be able to boost your productivity to a higher level.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+                        <path fill="#000000"
+                            d="M15 15v-1h-1v1zm5.293 6.707a1 1 0 0 0 1.414-1.414zM15 9h-1v1h1zm6.707-5.293a1 1 0 0 0-1.414-1.414zM9 15h1v-1H9zm-6.707 5.293a1 1 0 1 0 1.414 1.414zM9 9v1h1V9zM3.707 2.293a1 1 0 0 0-1.414 1.414zM16 20v-5h-2v5zm-1-4h5v-2h-5zm-.707-.293l6 6l1.414-1.414l-6-6zM14 4v5h2V4zm1 6h5V8h-5zm.707-.293l6-6l-1.414-1.414l-6 6zM10 20v-5H8v5zm-1-6H4v2h5zm-.707.293l-6 6l1.414 1.414l6-6zM8 4v5h2V4zm1 4H4v2h5zm.707.293l-6-6l-1.414 1.414l6 6z" />
+                    </svg>
+                </div>
+                <div class="text">
+                    <h3>Reduce Stress</h3>
+                    <p>
+                        You don't have to worry about overwork anymore; you are the owner of your time and your life.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+                        <g fill="none" stroke="#000000" stroke-width="2">
+                            <circle cx="12" cy="12" r="9" />
+                            <path stroke-linecap="round" d="M16.5 12h-4.25a.25.25 0 0 1-.25-.25V8.5" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="text">
+                    <h3>Free Time</h3>
+                    <p>
+                        Once you have finished all your duties, you can have time for yourself and your loved ones.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>

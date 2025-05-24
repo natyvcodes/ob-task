@@ -1,0 +1,127 @@
+
+body {
+    margin:0;
+    padding: 0;
+}
+main {
+    width: 85%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+.intro {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    border: 5px solid black;
+    padding: 50px 0;
+    border-radius: 10px;
+    background-color: #eaffea;
+}
+.intro-text {
+    font-size: 2.2em;
+    align-content: center;
+    padding-left: 40px;
+    width: 70%;
+}
+.intro p {
+    padding: 0;
+    margin: 7px;
+}
+.intro p:nth-child(1) {
+    color: #ff6200;
+}
+.tooltip-t {
+    text-decoration: underline;
+    color: #ff6200;
+    cursor: pointer;
+}
+.intro-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    margin: 0 auto;
+}
+.intro-img img {
+    width: 60%;
+    border: 0.4px solid black;
+}
+.intro-button {
+    padding-left: 8px;
+}
+/*Section Advantages*/
+.advan-container {
+    margin-top: 80px;
+    
+}
+.advan-container h2 {
+    text-transform:uppercase;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cards-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card {
+    width: 250px;
+    height: 200px;
+    box-shadow: 0px 0px 1px black;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #efefef;
+    margin: 10px;
+}
+.btn-start {
+    border: none;
+    background-color: #ff6200;
+    font-size: 0.6em;
+    color: #eaffea;
+    padding: 15px 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: "Outfit", serif;
+    margin: 15px 0;
+}
+@media (max-width: 1200px) {
+    .intro-text {
+        font-size: 2em;
+    }
+    .intro-img {
+        width: 50%;
+    }
+    .cards-container {
+        flex-wrap: wrap;
+    }
+    .intro-img img {
+        width: 80%;
+    }
+}
+@media (max-width: 900px) {
+    .intro-text {
+        font-size: 1.5em;
+    }
+    .intro-img {
+        width: 60%;
+    }
+    .intro-img img {
+        width: 90%;
+    }
+}
+@media (max-width: 600px) {
+    .intro {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .intro-text {
+        padding: 20px 0 0  0px;
+        font-size: 1.2em;
+    }
+    .intro-button {
+        font-size: 1.2em;
+    }
+}
