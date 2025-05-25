@@ -12,7 +12,7 @@ app.use(cors({
     origin: 'https://obtask.netlify.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
-app.options('*', cors());
+
 app.get('/', (req, res) => {
     res.json({ message: 'Hola' });
 
