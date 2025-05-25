@@ -14,9 +14,8 @@ app.use(cors({
 }));
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Hola' });
-
-})
+  res.json({ message: 'Hola desde Express en Vercel' });
+});
 app.post('/addTask', db.addTask)
 app.get('/categories', db.getCategories)
 app.get('/states', db.getStates)
@@ -27,8 +26,6 @@ app.post('/deleteTask', db.deleteTask)
 app.post('/updateTask', db.updateTask)
 app.post('/deleteUser', db.deleteUser)
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+
 
 module.exports = app;
