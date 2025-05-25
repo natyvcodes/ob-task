@@ -7,7 +7,7 @@ const db = require('./src/queries');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.options('*', cors());
 app.use(cors({
     origin: 'https://obtask.netlify.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
