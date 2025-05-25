@@ -9,14 +9,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: process.env.ALLOW_URL,
+    origin: 'https://obtask.netlify.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Hola' });
-
-})
+  res.json({ message: 'Hola desde Express en Vercel' });
+});
 app.post('/addTask', db.addTask)
 app.get('/categories', db.getCategories)
 app.get('/states', db.getStates)
@@ -30,3 +29,4 @@ app.post('/deleteUser', db.deleteUser)
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
