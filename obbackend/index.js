@@ -26,5 +26,7 @@ app.post('/deleteTask', db.deleteTask)
 app.post('/updateTask', db.updateTask)
 app.post('/deleteUser', db.deleteUser)
 
-
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
 
